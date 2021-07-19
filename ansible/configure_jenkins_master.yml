@@ -1,0 +1,21 @@
+- hosts: sb #from hosts file 
+  vars:
+    worker_ip_hostname: '{{ ip }}' #use parameters    
+  tasks:  
+
+  - name: Copy worker node's public key[id_rsa.pub] to Master Node's known_hosts file
+    become: yes    
+    become_user: root
+    ansible.builtin.shell: |      
+      mkdir -p /var/lib/jenkins/.ssh
+      touch /var/lib/jenkins/.ssh/known_hosts  
+      cd /var/lib/jenkins/.ssh
+      ssh-keyscan -H {{ worker_ip_hostname }} >> /var/lib/jenkins/.ssh/known_hosts      
+      chown jenkins:jenkins /var/lib/jenkins/.ssh/known_hosts
+      chmod 700 /var/lib/jenkins/.ssh/known_hosts 
+
+    register: status
+  - debug: 
+      var: status  
+  
+  # ansible-playbook  configure_jenkins_master.yml --extra-vars="ip=172.31.16.100"

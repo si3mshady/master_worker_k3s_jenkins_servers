@@ -1,0 +1,54 @@
+- hosts: localhost #no communication with remote system for this playbook 
+  vars:
+    ec2_type: t2.large
+    role: EC2-Kratos
+    ami: ami-0dc2d3e4c0f9ebd18
+    subnet_id: subnet-e94854a4    
+  tasks:  
+
+  - name: Create Jenkins Master 
+    amazon.aws.ec2:    
+      region: us-east-1
+      key_name: dragon
+      group: homebase
+      user_data: "{{ lookup('file', 'jenkins_master.sh') }}"
+      instance_type: "{{ ec2_type }}"
+      instance_profile_name: "{{ role }}"
+      image: "{{ ami }}"
+      wait: yes
+      wait_timeout: 500
+      count: '{{ count }}' #command line arg
+      vpc_subnet_id: "{{ subnet_id }}"
+      assign_public_ip: yes
+      monitoring: no             
+      instance_tags:
+        Name:  Master_Node
+    register: status
+  - debug: 
+      var: status  #display output of api call 
+
+
+  - name: Create Jenkins Agent 
+    amazon.aws.ec2:    
+      region: us-east-1
+      key_name: dragon
+      group: homebase
+      user_data: "{{ lookup('file', 'jenkins_worker.sh') }}"
+      instance_type: "{{ ec2_type }}"
+      instance_profile_name: "{{ role }}"
+      image: "{{ ami }}"
+      wait: yes
+      wait_timeout: 500
+      count: '{{ count }}' #command line arg
+      vpc_subnet_id: "{{ subnet_id }}"
+      assign_public_ip: yes
+      monitoring: yes             
+      instance_tags:
+        Name: Worker_Node
+    register: status #capture output of api call 
+  - debug: 
+      var: status #display output of api call 
+
+
+#example usage
+# ansible-playbook  filename.yml --extra-vars="count=1
