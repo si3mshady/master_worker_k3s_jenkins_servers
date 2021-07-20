@@ -4,7 +4,7 @@
   vars:
     ec2_type: t2.large
     role: EC2-Kratos
-    ami: ami-0dc2d3e4c0f9ebd18
+    ami:  ami-0747bdcabd34c712a 
     subnet_id: subnet-e94854a4    
   tasks:  
 

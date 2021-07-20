@@ -1,12 +1,29 @@
 #!/bin/bash 
-sudo wget -O /etc/yum.repos.d/jenkins.repo \
-    https://pkg.jenkins.io/redhat/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
-sudo yum install -y jenkins 
-sudo yum -y install java-1.8.0-openjdk
-sudo systemctl daemon-reload
-sudo systemctl start jenkins
-sudo yum upgrade -y
 
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key \
+ | sudo apt-key add -
+
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+#install jenkins 
+sudo apt update
+sudo apt install jenkins
+sudo systemctl start jenkins
+
+#install git 
+sudo apt install  -y  git
+
+#install docker 
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+apt-cache policy docker-ce
+sudo apt install docker-ce
+sudo systemctl status docker
+
+
+#install docker 
+#git 
 
 # https://github.com/si3mshady/DevOps-Demos/tree/master/setup-jenkins-slave
