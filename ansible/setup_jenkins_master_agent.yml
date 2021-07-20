@@ -1,3 +1,5 @@
+# ansible-playbook setup_jenkins_master_agent.yml --extra-vars="count=1"
+
 - hosts: localhost #no communication with remote system for this playbook 
   vars:
     ec2_type: t2.large

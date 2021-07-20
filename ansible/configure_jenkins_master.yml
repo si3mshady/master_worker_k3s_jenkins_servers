@@ -1,6 +1,7 @@
+# ansible-playbook  configure_jenkins_master.yml --extra-vars="ip=172.31.16.100"
 - hosts: sb #from hosts file 
   vars:
-    worker_ip_hostname: '{{ ip }}' #use parameters    
+    worker_ip_hostname: '{{ ip }}' #use cmd-line parameters    
   tasks:  
 
   - name: Copy worker node's public key[id_rsa.pub] to Master Node's known_hosts file
@@ -18,4 +19,3 @@
   - debug: 
       var: status  
   
-  # ansible-playbook  configure_jenkins_master.yml --extra-vars="ip=172.31.16.100"
