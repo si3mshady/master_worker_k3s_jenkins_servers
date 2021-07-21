@@ -18,6 +18,9 @@ sudo apt install -y nodejs
 #install git 
 sudo apt install  -y  git
 
+#install snyk - vuln scanner 
+sudo npm install -y snyk
+
 #install docker 
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
