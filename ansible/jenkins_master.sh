@@ -7,7 +7,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 
 #install jenkins 
 sudo apt update
-sudo apt install jenkins
+sudo apt install -y jenkins
 sudo systemctl start jenkins
 
 #install git 
@@ -19,11 +19,14 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt update
 apt-cache policy docker-ce
-sudo apt install docker-ce
+sudo apt install -y docker-ce
 sudo systemctl status docker
 
 
-#install docker 
-#git 
+#terraform 
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install -y terraform
 
 # https://github.com/si3mshady/DevOps-Demos/tree/master/setup-jenkins-slave
