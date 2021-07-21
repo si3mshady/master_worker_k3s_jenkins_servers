@@ -18,8 +18,10 @@ sudo apt install -y nodejs
 #install git 
 sudo apt install  -y  git
 
-#install snyk - vuln scanner 
-sudo npm install -y snyk
+
+#install python & aws-cli 
+sudo apt install -y python3-pip
+python3 -m pip3 install --upgrade awscli
 
 #install docker 
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
