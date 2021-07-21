@@ -11,6 +11,10 @@ sudo apt install -y openjdk-8-jdk
 sudo apt install -y jenkins
 sudo systemctl start jenkins
 
+#install npm/nodejs Nodesource
+# https://linuxize.com/post/how-to-install-node-js-on-ubuntu-20-04/
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install -y nodejs
 #install git 
 sudo apt install  -y  git
 
