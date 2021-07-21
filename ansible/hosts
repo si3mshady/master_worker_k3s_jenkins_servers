@@ -3,4 +3,4 @@
 localhost ansible_python_interpreter=python
 
 [sandbox]
-sb ansible_host=54.210.23.21 ansible_user=ec2-user ansible_private_key_file=/Users/si3mshady/dragon.pem
+sb ansible_host=54.86.201.81 ansible_user=ubuntu ansible_private_key_file=/Users/si3mshady/dragon.pem

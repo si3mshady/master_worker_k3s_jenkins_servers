@@ -7,6 +7,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 
 #install jenkins 
 sudo apt update
+sudo apt install -y openjdk-8-jdk
 sudo apt install -y jenkins
 sudo systemctl start jenkins
 
